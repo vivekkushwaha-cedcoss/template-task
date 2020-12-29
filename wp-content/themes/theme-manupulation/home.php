@@ -56,7 +56,7 @@ get_header();
             <div class="col-lg-6">
                 <div class="blog-post">
                 <div class="blog-thumb">
-                    <img src="<?php echo  get_template_directory_uri();?>/images/blog-thumb-01.jpg" alt="">
+                    <?php echo (has_post_thumbnail())? the_post_thumbnail(): "<img src=".get_template_directory_uri()."/images/banner-item-01.jpg>";?>
                 </div>
                 <div class="down-content">
                     <span><?php echo the_category(); ?></span>
@@ -68,16 +68,27 @@ get_header();
                     <ul class="post-info">
                     <li><a href="#"><?php echo get_the_author();?></a></li>
                     <li><a href="#"><?php echo get_the_date();?></a></li>
-                    <li><a href="#"><?php echo get_comments_number();?></a></li>
+                    <li><a href="#"><?php echo get_comments_number();?> comments</a></li>
                     </ul>
-                    <p><?php echo the_excerpt(10);?></p>
+                    <p><?php 
+                    $excerpt=get_the_excerpt();
+                    echo substr( $excerpt, 0, 100 )." <a href=".$post_slug." id='link-color-read-more'>read more..</a>"?></p>
                     <div class="post-options">
                     <div class="row">
                         <div class="col-lg-12">
                         <ul class="post-tags">
-                            <li><i class="fa fa-tags"></i></li>
-                            <li><a href="#">Best Templates</a>,</li>
-                            <li><a href="#">TemplateMo</a></li>
+                            <?php
+                            $tags = get_tags(array('get'=>'all'));
+                            $output = '<li><i class="fa fa-tags"></i></li>';
+                                if($tags) {
+                                foreach ($tags as $tag):
+                                $output .= '<li><a href="/tag/'.$tag->name.'">'. $tag->name .'</a></li>';
+                                endforeach;
+                                } else {
+                                _e('No tags created.', 'text-domain');
+                                }
+                            echo $output;
+                            ?>
                         </ul>
                         </div>
                     </div>
@@ -111,10 +122,10 @@ get_header();
                 <div class="content">
                     <?php
                     $tags = get_tags(array('get'=>'all'));
-                    $output .= '<ul class="tag-cloud-list">';
+                    $output = '<ul class="tag-cloud-list">';
                         if($tags) {
                         foreach ($tags as $tag):
-                        $output .= '<li><a href="/category/'.$tag->name.'">'. $tag->name .'</a></li>';
+                        $output .= '<li><a href="/tag/'.$tag->name.'">'. $tag->name .'</a></li> ';
                         endforeach;
                         } else {
                         _e('No tags created.', 'text-domain');

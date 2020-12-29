@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package theme-manupulation
+ * @package Theme-manupulation
  */
 
 get_header();
@@ -20,12 +20,13 @@ get_header();
     <div class="container-fluid">
     <div class="owl-banner owl-carousel">
         <?php
-        $the_query = new WP_Query( 'category_name');
+        $the_query = new WP_Query('category_name');
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
         ?>
         <div class="item">
-        <?php echo (has_post_thumbnail())? the_post_thumbnail(): "<img src=".get_template_directory_uri()."/images/banner-item-01.jpg>";?>
+        <?php echo (has_post_thumbnail())? the_post_thumbnail(): 
+        "<img src=".get_template_directory_uri()."/images/banner-item-01.jpg>";?>
         <div class="item-content">
             <div class="main-content">
             <div class="meta-category">
@@ -35,11 +36,13 @@ get_header();
                 global $post;
                 $post_slug = $post->post_name;
             ?>
-            <a href="<?php echo $post_slug;?>"><h4><?php echo get_the_title();?></h4></a>
+            <a href="<?php echo $post_slug;?>"><h4>
+                <?php echo get_the_title();?>
+            </h4></a>
             <ul class="post-info">
                 <li><a href="#"><?php echo get_the_author();?></a></li>
                 <li><a href="#"><?php echo get_the_date();?></a></li>
-                <li><a href="#"><?php echo get_comments_number();?></a></li>
+                <li><a href="#"><?php echo get_comments_number();?> comments</a></li>
             </ul>
             </div>
         </div>
@@ -64,7 +67,8 @@ get_header();
             </div>
             <div class="col-lg-4">
                 <div class="main-button">
-                <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" target="_parent">Download Now!</a>
+                <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" 
+                target="_parent">Download Now!</a>
                 </div>
             </div>
             </div>
@@ -82,14 +86,16 @@ get_header();
         <div class="all-blog-posts">
             <div class="row">
             <?php 
-            $the_query = new WP_Query( 'category_name' );
+            $the_query = new WP_Query('category_name');
             while ( $the_query->have_posts() ) {
                 $the_query->the_post();
             ?>
             <div class="col-lg-12">
                 <div class="blog-post">
                 <div class="blog-thumb">
-                    <img src="<?php echo  get_template_directory_uri();?>/images/blog-post-01.jpg" alt="">
+                <?php echo (has_post_thumbnail())? the_post_thumbnail(): 
+                "<img src=".get_template_directory_uri().
+                "/images/banner-item-01.jpg>";?>
                 </div>
                 <div class="down-content">
                     <span><?php echo the_category();?></span>
@@ -97,13 +103,20 @@ get_header();
                         global $post;
                         $post_slug = $post->post_name;
                     ?>
-                    <a href="<?php echo $post_slug?>"><h4><?php echo get_the_title();?></h4></a>
+                    <a href="<?php echo '/post/'.$post_slug?>"><h4>
+                        <?php echo get_the_title();?></h4></a>
                     <ul class="post-info">
                     <li><a href="#"><?php echo get_the_author();?></a></li>
                     <li><a href="#"><?php echo get_the_date();?></a></li>
-                    <li><a href="#"><?php echo get_comments_number();?></a></li>
+                    <li><a href="#"><?php echo get_comments_number();?> 
+                    comments</a></li>
                     </ul>
-                    <p><?php echo get_the_content();?></p>
+                    <p>
+                        <?php 
+                        $excerpt=get_the_excerpt();
+                        echo substr($excerpt, 0, 200)." <a href=".$post_slug." id='link-color-read-more'>read more..</a>";
+                        ?>
+                    </p>
                     <div class="post-options">
                     <div class="row">
                         <div class="col-6">
@@ -111,13 +124,13 @@ get_header();
                             <?php
                             $tags = get_tags(array('get'=>'all'));
                             $output = '<li><i class="fa fa-tags"></i></li>';
-                                if($tags) {
+                            if ($tags) {
                                 foreach ($tags as $tag):
-                                $output .= '<li><a href="/category/'.$tag->name.'">'. $tag->name .'</a></li>';
+                                    $output .= '<li><a href="/tag/'.$tag->name.'">'. $tag->name .'</a></li> ';
                                 endforeach;
-                                } else {
+                            } else {
                                 _e('No tags created.', 'text-domain');
-                                }
+                            }
                             echo $output;
                             ?>
                         </ul>
@@ -161,13 +174,14 @@ get_header();
                     <?php
                     $tags = get_tags(array('get'=>'all'));
                     $output = '<ul class="tag-cloud-list">';
-                        if($tags) {
+                    if ($tags) {
                         foreach ($tags as $tag):
-                        $output .= '<li><a href="/category/'.$tag->name.'">'. $tag->name .'</a></li>';
+                            $output .= '<li><a href="/tag/'.$tag->name.'">'. $tag->name .
+                            '</a></li>';
                         endforeach;
-                        } else {
+                    } else {
                         _e('No tags created.', 'text-domain');
-                        }
+                    }
                     $output .= '</ul>';
                     echo $output;
                     ?>

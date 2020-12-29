@@ -526,6 +526,7 @@ header .navbar {
 	padding: 0px;
 	width: 100%;
 	text-align: center;
+	color: white;
 }
 
 ul.page-numbers {
@@ -597,7 +598,7 @@ ul.page-numbers li a:hover {
 	float: left;
 }
 
-.blog-posts .comments ul li .author-thumb img {
+.blog-posts .comment-author img {
 	max-width: 100px;
 	display: inline;
 }
@@ -607,14 +608,15 @@ ul.page-numbers li a:hover {
 	display: grid;
 }
 
-.blog-posts .comments ul li .right-content h4 {
+.blog-posts .comments .comment-author a {
 	color: #20232e;
 	font-size: 19px;
 	font-weight: 900;
 	letter-spacing: 0.5px;
+	margin-left: 10px;
 }
 
-.blog-posts .comments ul li .right-content h4 span {
+.blog-posts .comments .comment-metadata time {
 	font-size: 14px;
     color: #aaa;
 	font-weight: 400;
@@ -633,10 +635,14 @@ ul.page-numbers li a:hover {
 	font-size: 13px;
 	text-transform: uppercase;
 	font-weight: 500;
-	color: #7a7a7a;
+	color:white;
+	background-color: #f48840;
 	outline: none;
 	padding: 0px 15px;
 	margin-bottom: 30px;
+}
+.blog-posts .submit-comment input:hover{
+	background-color: #fb9857;
 }
 
 .blog-posts .submit-comment textarea {
@@ -661,7 +667,7 @@ ul.page-numbers li a:hover {
 	color: #aaa;
 }
 
-.blog-posts .submit-comment button {
+.blog-posts .form-submit #submit {
 	display: inline-block;
 	background-color: #f48840;
 	color: #fff;
@@ -672,9 +678,10 @@ ul.page-numbers li a:hover {
 	transition: all .3s;
 	border: none;
 	outline: none;
+	border-radius: 0;
 }
 
-.blog-posts .submit-comment button:hover {
+.blog-posts .form-submit #submit:hover {
 	background-color: #fb9857;
 }
 
@@ -1113,4 +1120,44 @@ footer p a:hover {
 		margin-left: 0px;
 		margin-top: 60px;
 	}
+}
+#link-color-read-more {
+	color: #f48840;
+}
+#link-color-read-more:hover {
+	color: #7a7a7a;
+}
+.blog-thumb img{
+	/* height: fit-content; */
+	height: 350px;
+}
+.comment-meta{
+	margin-top: 0px;
+    text-align: left;
+    background-color:white;
+    padding: 0px;
+}
+/* .comment-author.vcard {
+    display: table-caption;
+} */
+.comment-author span{
+	display: none;
+}
+.comment-author {
+	display: inline;
+}
+.comment-metadata {
+	display: inline;
+}
+.reply a{
+	color: #f48840;
+}
+.reply a:hover,a:visited{
+	color: #fb9857;
+}
+.comment-edit-link{
+	color: #f48840;
+}
+.comment-edit-link:hover,.comment-edit-link:visited{
+	color:#fb9857;
 }
