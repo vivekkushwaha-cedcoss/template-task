@@ -36,7 +36,7 @@ h1,h2,h3,h4,h5,h6 {
 .main-button a {
 	display: inline-block;
 	background-color: #f48840;
-	color: #fff;
+	color: #fff !important;
 	font-size: 13px;
 	font-weight: 500;
 	padding: 12px 20px;
@@ -481,10 +481,10 @@ header .navbar {
 }
 
 .blog-posts .down-content p {
-	padding: 25px 0px;
+	/* padding: 25px 0px; */
 	margin: 25px 0px;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
+	/* border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee; */
 }
 
 .blog-posts .down-content ul.post-share {
@@ -538,8 +538,8 @@ ul.page-numbers li {
 	margin: 0px 5px;
 }
 
-ul.page-numbers li a {
-	width: 50px;
+.all-blog-posts .row ul.page-numbers a {
+	width: 80px;
 	height: 50px;
 	display: inline-block;
 	text-align: center;
@@ -550,14 +550,29 @@ ul.page-numbers li a {
 	font-weight: 500;
 	transition: all 0.3s;
 }
-
+.all-blog-posts .row ul.page-numbers span {
+	width: 80px;
+	height: 50px;
+	display: inline-block;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	color:white;
+	border: 1px solid #eee;
+	font-weight: 500;
+	transition: all 0.3s;
+	background-color:  #f48840;
+}
+/* .prev.page-numbers {
+	display: inline-block;
+} */
 ul.page-numbers li.active a {
 	background-color: #f48840;
 	border-color: #f48840;
 	color: #fff;
 }
 
-ul.page-numbers li a:hover {
+.all-blog-posts .row ul.page-numbers a:hover,.all-blog-posts .row ul.page-numbers span:hover {
 	color: #f48840;
 }
 
@@ -724,13 +739,14 @@ ul.page-numbers li a:hover {
 .search-submit{
 	border: 1px solid !important;
     border-color: #ccc #ccc #bbb !important;
-    border-radius: 3px !important;
-    background: #e6e6e6 !important;
-    color: rgba(0, 0, 0, 0.8) !important;
+    border-radius: 0 !important;
+    background:  #f48840 !important;
+    color:white !important;
     line-height: 2 !important;
-    padding: 0.6em 1em 0.4em !important;
+	padding: 0.6em 1em 0.4em !important;
+	border: none !important;
 }
-}
+
 .search-field input::placeholder {
 	color: #aaa;
 }

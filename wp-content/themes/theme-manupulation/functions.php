@@ -1,10 +1,51 @@
 <?php
 /**
- * theme-manupulation functions and definitions
+ * Short description for file
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ * Long description for file (if any)...
  *
- * @package theme-manupulation
+ * PHP version 5
+ *
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   CategoryName
+ * @package    PackageName
+ * @author     Another Author <another@example.com>
+ * @copyright  1997-2005 The PHP Group
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    SVN: $Id$
+ * @link       http://pear.php.net/package/PackageName
+ * @see        NetOther, Net_Sample::Net_Sample()
+ * @since      File available since Release 1.2.0
+ * @deprecated File deprecated in Release 2.0.0
+ */
+
+/*
+* Place includes, constant defines and $_GLOBAL settings here.
+* Make sure they have appropriate docblocks to avoid phpDocumentor
+* construing they are documented by the page-level docblock.
+*/
+
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @category   CategoryName
+ * @package    PackageName
+ * @author     Original Author <author@example.com>
+ * @author     Another Author <another@example.com>
+ * @copyright  1997-2005 The PHP Group
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: @package_version@
+ * @link       http://pear.php.net/package/PackageName
+ * @see        NetOther, Net_Sample::Net_Sample()
+ * @since      Class available since Release 1.2.0
+ * @deprecated Class deprecated in Release 2.0.0
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -14,20 +55,26 @@ if ( ! defined( '_S_VERSION' ) ) {
 
 if ( ! function_exists( 'theme_manupulation_setup' ) ) :
 	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
+	 * Get the ingredients
 	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
+	 * This function calls a static fetching method against the Ingredient class
+	 * and returns everything matching this recipe ID
+	 *
+	 * @return void
 	 */
 	function theme_manupulation_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on theme-manupulation, use a find and replace
-		 * to change 'theme-manupulation' to the name of your theme in all the template files.
+		 * If you're building a theme based on theme-manupulation,
+		 * use a find and replace
+		 * to change 'theme-manupulation' to the name of your theme
+		 * in all the template files.
 		 */
-		load_theme_textdomain( 'theme-manupulation', get_template_directory() . '/languages' );
+		load_theme_textdomain(
+			'theme-manupulation',
+			get_template_directory() . '/languages'
+		);
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -105,21 +152,28 @@ endif;
 add_action( 'after_setup_theme', 'theme_manupulation_setup' );
 
 /**
- * Set the content width in pixels, based on the theme's design and stylesheet.
+ * Get the ingredients
  *
- * Priority 0 to make it available to lower priority callbacks.
+ * This function calls a static fetching method against the Ingredient class
+ * and returns everything matching this recipe ID
  *
- * @global int $content_width
+ * @return void
  */
 function theme_manupulation_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'theme_manupulation_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters(
+		'theme_manupulation_content_width',
+		640
+	);
 }
 add_action( 'after_setup_theme', 'theme_manupulation_content_width', 0 );
 
 /**
- * Register widget area.
+ * Get the ingredients
  *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ * This function calls a static fetching method against the Ingredient class
+ * and returns everything matching this recipe ID
+ *
+ * @return void
  */
 function theme_manupulation_widgets_init() {
 	register_sidebar(
@@ -137,33 +191,123 @@ function theme_manupulation_widgets_init() {
 add_action( 'widgets_init', 'theme_manupulation_widgets_init' );
 
 /**
- * Enqueue scripts and styles.
+ * Get the ingredients
+ *
+ * This function calls a static fetching method against the Ingredient class
+ * and returns everything matching this recipe ID
+ *
+ * @return void
  */
 function theme_manupulation_scripts() {
-	wp_enqueue_style( 'theme-manupulation-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_enqueue_style( 'theme-manupulation-style1', get_template_directory_uri().'/css/fontawesome.css' );
-	wp_enqueue_style( 'theme-manupulation-style2', get_template_directory_uri().'/css/templatemo-stand-blog.css' );
-	wp_enqueue_style( 'theme-manupulation-style3', get_template_directory_uri().'/css/owl.css' );
-	wp_enqueue_style( 'theme-manupulation-style4', 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap' );
-	wp_enqueue_style( 'theme-manupulation-style5', get_template_directory_uri().'/css/bootstrap.min.css' );
-	
-	wp_enqueue_script( 'jquery-min', get_template_directory_uri() . '/js/jquery.min.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'bootstrap-bundle', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
-	
-	wp_enqueue_script( 'navigation-js', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'owl-js', get_template_directory_uri() . '/js/owl.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/js/slick.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'isotope-js', get_template_directory_uri() . '/js/isotope.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'accordions-js', get_template_directory_uri() . '/js/accordions.js', array(), _S_VERSION, true );
-    wp_enqueue_script('extra-footer-js', get_template_directory_uri() . '/js/extrafooter.js', array(), _S_VERSION, true );
-	wp_style_add_data( 'theme-manupulation-style', 'rtl', 'replace' );
+	wp_enqueue_style(
+		'theme-manupulation-style',
+		get_stylesheet_uri(),
+		array(),
+		_S_VERSION
+	);
+	wp_enqueue_style(
+		'theme-manupulation-style1',
+		get_template_directory_uri() . '/css/fontawesome.css',
+		array(),
+		_S_VERSION
+	);
+	wp_enqueue_style(
+		'theme-manupulation-style2',
+		get_template_directory_uri() . '/css/templatemo-stand-blog.css',
+		array(),
+		_S_VERSION
+	);
+	wp_enqueue_style(
+		'theme-manupulation-style3',
+		get_template_directory_uri() . '/css/owl.css',
+		array(),
+		_S_VERSION
+	);
+	wp_enqueue_style(
+		'theme-manupulation-style4',
+		'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap',
+		array(),
+		_S_VERSION
+	);
+	wp_enqueue_style(
+		'theme-manupulation-style5',
+		get_template_directory_uri() . '/css/bootstrap.min.css',
+		array(),
+		_S_VERSION
+	);
+	wp_enqueue_script(
+		'jquery-min',
+		get_template_directory_uri() . '/js/jquery.min.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'bootstrap-bundle',
+		get_template_directory_uri() . '/js/bootstrap.bundle.min.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'navigation-js',
+		get_template_directory_uri() . '/js/navigation.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'custom-js',
+		get_template_directory_uri() . '/js/custom.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'owl-js',
+		get_template_directory_uri() . '/js/owl.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'slick-js',
+		get_template_directory_uri() . '/js/slick.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'isotope-js',
+		get_template_directory_uri() . '/js/isotope.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'accordions-js',
+		get_template_directory_uri() . '/js/accordions.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_enqueue_script(
+		'extra-footer-js',
+		get_template_directory_uri() . '/js/extrafooter.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+	wp_style_add_data(
+		'theme-manupulation-style',
+		'rtl',
+		'replace'
+	);
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'theme_manupulation_scripts' );
-// remove_filter( 'the_content', 'wpautop' );
 /**
  * Implement the Custom Header feature.
  */
@@ -188,6 +332,18 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+	include get_template_directory() . '/inc/jetpack.php';
 }
-
+/**
+ * Get the ingredients
+ * This function calls a static fetching method against the Ingredient class
+ * and returns everything matching this recipe ID
+ *
+ * @param length $length length.
+ *
+ * @return array An array of Ingredient objects
+ */
+function custom_excerpt_length( $length ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
